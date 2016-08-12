@@ -1,4 +1,4 @@
-package com.tx.core.service.bind;
+package com.tx.core.service.api.commands;
 
 import android.content.Context;
 import android.os.RemoteException;
@@ -8,6 +8,9 @@ import com.tx.core.ServiceAidl;
 import com.tx.core.entities.BaseEntity;
 import com.tx.core.service.BaseService;
 import com.tx.core.service.api.commands.ServiceAPICommands;
+import com.tx.core.service.bind.ServiceBindImpl;
+
+import org.parceler.Parcel;
 
 import java.util.List;
 
@@ -52,6 +55,7 @@ public class ServiceApiCommandsImpl implements ServiceAPICommands {
 
             @Override
             public void onNext(ServiceAidl o) {
+                Parcel p;
                 /*try {
                     List<BaseEntity> data = o.test();
                     for (BaseEntity item : data) {
