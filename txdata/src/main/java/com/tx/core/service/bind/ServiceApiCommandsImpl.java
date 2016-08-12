@@ -1,4 +1,4 @@
-package com.tx.core.service.api.commands;
+package com.tx.core.service.bind;
 
 import android.content.Context;
 import android.os.RemoteException;
@@ -8,7 +8,6 @@ import com.tx.core.ServiceAidl;
 import com.tx.core.entities.BaseEntity;
 import com.tx.core.service.BaseService;
 import com.tx.core.service.api.commands.ServiceAPICommands;
-import com.tx.core.service.bind.ServiceBindImpl;
 
 import org.parceler.Parcel;
 
