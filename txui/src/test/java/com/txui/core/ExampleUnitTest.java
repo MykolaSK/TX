@@ -1,4 +1,4 @@
-package com.tx.core;
+package com.txui.core;
 
 import org.junit.Test;
 

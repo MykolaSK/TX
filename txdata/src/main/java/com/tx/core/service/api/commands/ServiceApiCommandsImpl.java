@@ -25,11 +25,9 @@ public class ServiceApiCommandsImpl implements ServiceAPICommands {
         context = localContext;
         initServiceBinder();
     }
-
     private void initServiceBinder() {
         mBind = new ServiceBindImpl(context, BaseService.class);
     }
-
     private void checkBindingAndReconnect() {
         if (!mBind.isBinderAlive()) mBind.reconnect();
     }
@@ -39,6 +37,7 @@ public class ServiceApiCommandsImpl implements ServiceAPICommands {
         final PublishSubject<BaseEntity> loadData = PublishSubject.create();
         checkBindingAndReconnect();
 
+        Observable.create(s->{});
         mBind.subscribe(new Subscriber<ServiceAidl>() {
             @Override
             public void onCompleted() {

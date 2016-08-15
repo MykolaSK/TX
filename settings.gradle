@@ -1,1 +1,1 @@
-include ':app', ':txlib', ':txdata', ':txui'
+include ':app', ':txdata', ':txui'

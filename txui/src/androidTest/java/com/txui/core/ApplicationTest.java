@@ -1,4 +1,4 @@
-package com.tx.ui.core;
+package com.txui.core;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

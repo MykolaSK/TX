@@ -1,4 +1,4 @@
-package com.tx.ui.core;
+package com.tx.app;
 
 import org.junit.Test;
 

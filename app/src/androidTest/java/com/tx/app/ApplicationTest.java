@@ -1,4 +1,4 @@
-package com.tx.core;
+package com.tx.app;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
