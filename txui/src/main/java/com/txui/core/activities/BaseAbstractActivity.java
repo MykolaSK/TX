@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.txui.core.fragments.BaseAbstractFragment;
 import com.txui.core.presenter.AbstractPresenter;
 
 /**
@@ -11,15 +12,19 @@ import com.txui.core.presenter.AbstractPresenter;
  */
 public class BaseAbstractActivity<P extends AbstractPresenter> extends AppCompatActivity {
     protected P mPresenter;
-    private AbstractPresenter.PView mView;
+    private AbstractPresenter.PView<BaseAbstractActivity, BaseAbstractFragment> mView;
     private boolean isViewCreated;
 
     public AbstractPresenter.PView getPView() {
-        if(!isViewCreated) throw new RuntimeException("Not yet. Wait until view created");
+        if (!isViewCreated) throw new RuntimeException("Not yet. Wait until view created");
         if (null != mView) {
-            mView = new AbstractPresenter.PView(this, null);
+            mView = new AbstractPresenter.PView<>(this, null);
         }
         return mView;
+    }
+
+    public P getPresenter() {
+        return mPresenter;
     }
 
     @Override

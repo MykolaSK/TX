@@ -12,16 +12,21 @@ import com.txui.core.presenter.AbstractPresenter;
 /**
  * Created by mykolakoshurenko on 8/15/16.
  */
-public abstract class BaseAbstractFragment extends Fragment {
+public abstract class BaseAbstractFragment<P extends AbstractPresenter> extends Fragment {
+    protected P mPresenter;
     private boolean isViewCreated;
-    private AbstractPresenter.PView mView;
+    private AbstractPresenter.PView<BaseAbstractActivity, BaseAbstractFragment> mView;
+
+    public P getPresenter() {
+        return mPresenter;
+    }
 
     public abstract BaseAbstractFragment getNewInstance(Bundle bundle);
 
     public AbstractPresenter.PView getPView() {
-        if(!isViewCreated) throw new RuntimeException("Not yet. Wait until view created");
+        if (!isViewCreated) throw new RuntimeException("Not yet. Wait until view created");
         if (null != mView) {
-            mView = new AbstractPresenter.PView((BaseAbstractActivity) getActivity(), this);
+            mView = new AbstractPresenter.PView<>((BaseAbstractActivity) getActivity(), this);
         }
         return mView;
     }

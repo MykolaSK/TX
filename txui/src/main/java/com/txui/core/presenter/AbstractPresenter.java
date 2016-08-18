@@ -11,11 +11,11 @@ import com.txui.core.utils.DialogStackHandler;
 /**
  * Created by mykolakoshurenko on 8/15/16.
  */
-public abstract class AbstractPresenter {
+public abstract class AbstractPresenter<A extends BaseAbstractActivity, F extends BaseAbstractFragment> {
 
     private ServiceApiCommandsImpl mApiCommands;
     private DialogStackHandler mDialogHandler;
-    private PView mView;
+    private PView<A, F> mView;
     private volatile boolean isViewBind;
 
 
@@ -23,7 +23,7 @@ public abstract class AbstractPresenter {
         mDialogHandler = new DialogStackHandler();
     }
 
-    public void onBindView(PView view) {
+    public void onBindView(PView<A, F> view) {
         isViewBind = true;
         if (useServiceApi()) {
             initServiceApi(view.getActivityContext());
@@ -65,12 +65,15 @@ public abstract class AbstractPresenter {
         }
     }
 
-    public static final class PView {
-        private final BaseAbstractActivity mActivity;
-        private final BaseAbstractFragment mFragment;
+    protected PView<A, F> getView() {
+        return mView;
+    }
 
+    public static final class PView<A extends BaseAbstractActivity, F extends BaseAbstractFragment> {
+        private final A mActivity;
+        private final F mFragment;
 
-        public PView(@NonNull BaseAbstractActivity activity, BaseAbstractFragment fragment) {
+        public PView(@NonNull A activity, F fragment) {
             this.mActivity = activity;
             this.mFragment = fragment;
         }
@@ -79,13 +82,14 @@ public abstract class AbstractPresenter {
             return mActivity;
         }
 
-        public final BaseAbstractActivity getActivity() {
+        public final A getActivity() {
             return mActivity;
         }
 
-        public final BaseAbstractFragment getFragment() {
+        public final F getFragment() {
             return mFragment;
         }
     }
+
 
 }
